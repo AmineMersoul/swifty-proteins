@@ -15,26 +15,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0K-kr-Ogz">
-                                <rect key="frame" x="174" y="433" width="66" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0K-kr-Ogz">
+                                <rect key="frame" x="174" y="460" width="66" height="30"/>
                                 <state key="normal" title="Authorize"/>
                                 <connections>
                                     <action selector="auth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WnV-Ca-bsE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hju-mK-q7w">
+                                <rect key="frame" x="192" y="516" width="30" height="30"/>
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="skip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LKq-KN-JDI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Hju-mK-q7w" firstAttribute="top" secondItem="p0K-kr-Ogz" secondAttribute="bottom" constant="26" id="2iw-wt-CJM"/>
+                            <constraint firstItem="p0K-kr-Ogz" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="6yf-Qb-X7p"/>
+                            <constraint firstItem="Hju-mK-q7w" firstAttribute="centerX" secondItem="p0K-kr-Ogz" secondAttribute="centerX" id="LIW-qf-Lic"/>
+                            <constraint firstItem="p0K-kr-Ogz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jxD-js-mab"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="hbI-DU-7Mx"/>
                     <connections>
                         <outlet property="authButton" destination="p0K-kr-Ogz" id="Fxr-de-Z1G"/>
+                        <segue destination="FY6-yi-OS1" kind="show" identifier="auth" id="zeb-F0-iOK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="137.94642857142856"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="dQN-JM-Juh">
+            <objects>
+                <viewController id="FY6-yi-OS1" customClass="SearchViewController" customModule="swifty_proteins" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hZE-rI-oDR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2xK-qd-cem">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-kf-Kdn">
+                                <rect key="frame" x="0.0" y="154" width="414" height="642"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2xK-qd-cem" firstAttribute="leading" secondItem="Coz-n4-JDz" secondAttribute="leading" id="1Vp-GV-g5D"/>
+                            <constraint firstItem="2xK-qd-cem" firstAttribute="leading" secondItem="PbJ-kf-Kdn" secondAttribute="leading" id="8Wk-1m-MHR"/>
+                            <constraint firstItem="2xK-qd-cem" firstAttribute="top" secondItem="Coz-n4-JDz" secondAttribute="top" id="Agn-3Z-GCa"/>
+                            <constraint firstItem="2xK-qd-cem" firstAttribute="centerX" secondItem="Coz-n4-JDz" secondAttribute="centerX" id="Cfa-e1-CRT"/>
+                            <constraint firstItem="PbJ-kf-Kdn" firstAttribute="centerX" secondItem="Coz-n4-JDz" secondAttribute="centerX" id="Fic-uI-eCq"/>
+                            <constraint firstItem="PbJ-kf-Kdn" firstAttribute="top" secondItem="2xK-qd-cem" secondAttribute="bottom" constant="10" id="SMn-PN-v9N"/>
+                            <constraint firstItem="PbJ-kf-Kdn" firstAttribute="centerY" secondItem="Coz-n4-JDz" secondAttribute="centerY" id="sQB-6X-sav"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Coz-n4-JDz"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qdL-13-liq"/>
+                    <connections>
+                        <outlet property="searchBar" destination="2xK-qd-cem" id="J5U-lC-gqJ"/>
+                        <outlet property="tableView" destination="PbJ-kf-Kdn" id="G8I-RA-SJS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iz7-sJ-Q0i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2008.6956521739132" y="137.94642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uiz-R9-O7g">

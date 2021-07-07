@@ -36,11 +36,11 @@ class ViewController: UIViewController {
                         // failed
                         return
                     }
-                    let alert = UIAlertController(title: "Matched", message: "your biometrics id is matched!", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                    self?.present(alert, animated: true)
                     
                     // success
+                    
+                    self?.performSegue(withIdentifier: "auth", sender: nil)
+                    
                 }
             }
         } else {
@@ -49,6 +49,11 @@ class ViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
             present(alert, animated: true)
         }
+    }
+    
+    @IBAction func skip(_ sender: Any) {
+        print("skip login")
+        performSegue(withIdentifier: "auth", sender: nil)
     }
     
 }

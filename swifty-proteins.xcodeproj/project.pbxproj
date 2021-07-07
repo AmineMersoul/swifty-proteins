@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79539278269605A50064A9FD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79539277269605A50064A9FD /* SearchViewController.swift */; };
+		79539280269611BD0064A9FD /* LigandsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7953927E269611BD0064A9FD /* LigandsTableViewCell.swift */; };
+		79539281269611BD0064A9FD /* LigandsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953927F269611BD0064A9FD /* LigandsTableViewCell.xib */; };
 		7974DF862695CAD200DF74A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974DF852695CAD200DF74A3 /* AppDelegate.swift */; };
 		7974DF882695CAD200DF74A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974DF872695CAD200DF74A3 /* SceneDelegate.swift */; };
 		7974DF8A2695CAD200DF74A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974DF892695CAD200DF74A3 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79539277269605A50064A9FD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7953927E269611BD0064A9FD /* LigandsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LigandsTableViewCell.swift; sourceTree = "<group>"; };
+		7953927F269611BD0064A9FD /* LigandsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LigandsTableViewCell.xib; sourceTree = "<group>"; };
 		7974DF822695CAD200DF74A3 /* swifty-proteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-proteins.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7974DF852695CAD200DF74A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7974DF872695CAD200DF74A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +43,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7953927926960B6A0064A9FD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7974DF892695CAD200DF74A3 /* ViewController.swift */,
+				79539277269605A50064A9FD /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		79539282269619F40064A9FD /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7953927E269611BD0064A9FD /* LigandsTableViewCell.swift */,
+				7953927F269611BD0064A9FD /* LigandsTableViewCell.xib */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
 		7974DF792695CAD200DF74A3 = {
 			isa = PBXGroup;
 			children = (
@@ -58,11 +82,12 @@
 			children = (
 				7974DF852695CAD200DF74A3 /* AppDelegate.swift */,
 				7974DF872695CAD200DF74A3 /* SceneDelegate.swift */,
-				7974DF892695CAD200DF74A3 /* ViewController.swift */,
 				7974DF8B2695CAD200DF74A3 /* Main.storyboard */,
+				7953927926960B6A0064A9FD /* ViewController */,
 				7974DF8E2695CAD400DF74A3 /* Assets.xcassets */,
 				7974DF902695CAD400DF74A3 /* LaunchScreen.storyboard */,
 				7974DF932695CAD400DF74A3 /* Info.plist */,
+				79539282269619F40064A9FD /* ViewCell */,
 			);
 			path = "swifty-proteins";
 			sourceTree = "<group>";
@@ -127,6 +152,7 @@
 			files = (
 				7974DF922695CAD400DF74A3 /* LaunchScreen.storyboard in Resources */,
 				7974DF8F2695CAD400DF74A3 /* Assets.xcassets in Resources */,
+				79539281269611BD0064A9FD /* LigandsTableViewCell.xib in Resources */,
 				7974DF8D2695CAD300DF74A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79539280269611BD0064A9FD /* LigandsTableViewCell.swift in Sources */,
 				7974DF8A2695CAD200DF74A3 /* ViewController.swift in Sources */,
 				7974DF862695CAD200DF74A3 /* AppDelegate.swift in Sources */,
+				79539278269605A50064A9FD /* SearchViewController.swift in Sources */,
 				7974DF882695CAD200DF74A3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
