@@ -10,6 +10,8 @@
 		79539278269605A50064A9FD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79539277269605A50064A9FD /* SearchViewController.swift */; };
 		79539280269611BD0064A9FD /* LigandsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7953927E269611BD0064A9FD /* LigandsTableViewCell.swift */; };
 		79539281269611BD0064A9FD /* LigandsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953927F269611BD0064A9FD /* LigandsTableViewCell.xib */; };
+		79539284269623D00064A9FD /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79539283269623D00064A9FD /* SceneViewController.swift */; };
+		79539286269625CB0064A9FD /* Earth.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 79539285269625CB0064A9FD /* Earth.usdz */; };
 		7974DF862695CAD200DF74A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974DF852695CAD200DF74A3 /* AppDelegate.swift */; };
 		7974DF882695CAD200DF74A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974DF872695CAD200DF74A3 /* SceneDelegate.swift */; };
 		7974DF8A2695CAD200DF74A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974DF892695CAD200DF74A3 /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 		79539277269605A50064A9FD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7953927E269611BD0064A9FD /* LigandsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LigandsTableViewCell.swift; sourceTree = "<group>"; };
 		7953927F269611BD0064A9FD /* LigandsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LigandsTableViewCell.xib; sourceTree = "<group>"; };
+		79539283269623D00064A9FD /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
+		79539285269625CB0064A9FD /* Earth.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Earth.usdz; sourceTree = "<group>"; };
 		7974DF822695CAD200DF74A3 /* swifty-proteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-proteins.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7974DF852695CAD200DF74A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7974DF872695CAD200DF74A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +52,7 @@
 			children = (
 				7974DF892695CAD200DF74A3 /* ViewController.swift */,
 				79539277269605A50064A9FD /* SearchViewController.swift */,
+				79539283269623D00064A9FD /* SceneViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -59,6 +64,14 @@
 				7953927F269611BD0064A9FD /* LigandsTableViewCell.xib */,
 			);
 			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		79539287269625E10064A9FD /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				79539285269625CB0064A9FD /* Earth.usdz */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 		7974DF792695CAD200DF74A3 = {
@@ -80,6 +93,7 @@
 		7974DF842695CAD200DF74A3 /* swifty-proteins */ = {
 			isa = PBXGroup;
 			children = (
+				79539287269625E10064A9FD /* Objects */,
 				7974DF852695CAD200DF74A3 /* AppDelegate.swift */,
 				7974DF872695CAD200DF74A3 /* SceneDelegate.swift */,
 				7974DF8B2695CAD200DF74A3 /* Main.storyboard */,
@@ -150,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79539286269625CB0064A9FD /* Earth.usdz in Resources */,
 				7974DF922695CAD400DF74A3 /* LaunchScreen.storyboard in Resources */,
 				7974DF8F2695CAD400DF74A3 /* Assets.xcassets in Resources */,
 				79539281269611BD0064A9FD /* LigandsTableViewCell.xib in Resources */,
@@ -167,6 +182,7 @@
 				79539280269611BD0064A9FD /* LigandsTableViewCell.swift in Sources */,
 				7974DF8A2695CAD200DF74A3 /* ViewController.swift in Sources */,
 				7974DF862695CAD200DF74A3 /* AppDelegate.swift in Sources */,
+				79539284269623D00064A9FD /* SceneViewController.swift in Sources */,
 				79539278269605A50064A9FD /* SearchViewController.swift in Sources */,
 				7974DF882695CAD200DF74A3 /* SceneDelegate.swift in Sources */,
 			);

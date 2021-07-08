@@ -34,6 +34,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         return filtredData.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("you selected a cell: \(filtredData[indexPath.row])")
+        performSegue(withIdentifier: "showScene", sender: nil)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let ligandsCell = tableView.dequeueReusableCell(withIdentifier: "LigandsTableViewCell", for: indexPath) as! LigandsTableViewCell
          ligandsCell.name?.text = filtredData[indexPath.row]

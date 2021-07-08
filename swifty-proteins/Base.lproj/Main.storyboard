@@ -62,7 +62,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-kf-Kdn">
-                                <rect key="frame" x="0.0" y="154" width="414" height="642"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="698"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -71,10 +71,10 @@
                             <constraint firstItem="2xK-qd-cem" firstAttribute="leading" secondItem="Coz-n4-JDz" secondAttribute="leading" id="1Vp-GV-g5D"/>
                             <constraint firstItem="2xK-qd-cem" firstAttribute="leading" secondItem="PbJ-kf-Kdn" secondAttribute="leading" id="8Wk-1m-MHR"/>
                             <constraint firstItem="2xK-qd-cem" firstAttribute="top" secondItem="Coz-n4-JDz" secondAttribute="top" id="Agn-3Z-GCa"/>
-                            <constraint firstItem="2xK-qd-cem" firstAttribute="centerX" secondItem="Coz-n4-JDz" secondAttribute="centerX" id="Cfa-e1-CRT"/>
-                            <constraint firstItem="PbJ-kf-Kdn" firstAttribute="centerX" secondItem="Coz-n4-JDz" secondAttribute="centerX" id="Fic-uI-eCq"/>
                             <constraint firstItem="PbJ-kf-Kdn" firstAttribute="top" secondItem="2xK-qd-cem" secondAttribute="bottom" constant="10" id="SMn-PN-v9N"/>
-                            <constraint firstItem="PbJ-kf-Kdn" firstAttribute="centerY" secondItem="Coz-n4-JDz" secondAttribute="centerY" id="sQB-6X-sav"/>
+                            <constraint firstItem="PbJ-kf-Kdn" firstAttribute="centerX" secondItem="Coz-n4-JDz" secondAttribute="centerX" id="YkI-PV-wox"/>
+                            <constraint firstItem="2xK-qd-cem" firstAttribute="trailing" secondItem="PbJ-kf-Kdn" secondAttribute="trailing" id="e1q-h0-o4C"/>
+                            <constraint firstItem="Coz-n4-JDz" firstAttribute="bottom" secondItem="PbJ-kf-Kdn" secondAttribute="bottom" constant="10" id="kHQ-FB-czL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Coz-n4-JDz"/>
                     </view>
@@ -82,11 +82,37 @@
                     <connections>
                         <outlet property="searchBar" destination="2xK-qd-cem" id="J5U-lC-gqJ"/>
                         <outlet property="tableView" destination="PbJ-kf-Kdn" id="G8I-RA-SJS"/>
+                        <segue destination="ggW-lK-NES" kind="show" identifier="showScene" id="Lpt-Cp-GoH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iz7-sJ-Q0i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2008.6956521739132" y="137.94642857142856"/>
+        </scene>
+        <!--Scene View Controller-->
+        <scene sceneID="Bm2-0z-8CQ">
+            <objects>
+                <viewController id="ggW-lK-NES" customClass="SceneViewController" customModule="swifty_proteins" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GpR-fd-dnD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-5i-F4i">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </sceneKitView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rUW-KU-ohy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="h80-jW-ahN"/>
+                    <connections>
+                        <outlet property="sceneView" destination="PWC-5i-F4i" id="9j9-FB-FYT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PtM-bT-RYN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3040.579710144928" y="137.94642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uiz-R9-O7g">
