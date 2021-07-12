@@ -57,12 +57,32 @@ class SceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        proteinScene.backgroundColor = UIColor.white
-        proteinScene.allowsCameraControl = true
-        proteinScene.autoenablesDefaultLighting = true
         atomSummary.isEditable = false
+        proteinScene.isHidden = true
         
-        getpdbFile(pdbFile: pdbFile)
+        // creating spinner
+        let spinner = SpinnerViewController()
+        // add the spinner view controller
+        addChild(spinner)
+        spinner.view.frame = view.frame
+        view.addSubview(spinner.view)
+        spinner.didMove(toParent: self)
+        
+        getpdbFile(pdbFile: pdbFile) {(pdbContent) in
+            DispatchQueue.main.async {
+                
+                //remove sipnner
+                spinner.willMove(toParent: nil)
+                spinner.view.removeFromSuperview()
+                spinner.removeFromParent()
+                
+                self.proteinScene.backgroundColor = UIColor.white
+                self.proteinScene.allowsCameraControl = true
+                self.proteinScene.autoenablesDefaultLighting = true
+                self.proteinScene.scene = ProteinScene(pdbFile: pdbContent)
+                self.proteinScene.isHidden = false
+            }
+        }
         
         atomSummary.isHidden = true
         atomName.text = ""
@@ -77,7 +97,7 @@ class SceneViewController: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    func getpdbFile(pdbFile: String) {
+    func getpdbFile(pdbFile: String, completion: @escaping (String) -> ()) {
         let url = URL(string: "https://files.rcsb.org/ligands/\(pdbFile.prefix(1))/\(pdbFile)/\(pdbFile)_ideal.pdb")
         
         //create the session object
@@ -99,7 +119,7 @@ class SceneViewController: UIViewController {
             let text = String(decoding: data, as: UTF8.self)
             .components(separatedBy: "\n")
             let pdbContent = text.joined(separator: "\n")
-            self.proteinScene.scene = ProteinScene(pdbFile: pdbContent)
+            completion(pdbContent)
         })
         task.resume()
     }
@@ -326,4 +346,20 @@ class ProteinScene: SCNScene, SCNNodeRendererDelegate {
         }
     }
     
+}
+
+class SpinnerViewController: UIViewController {
+    var spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = UIColor(white: 0, alpha: 0.4)
+
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.startAnimating()
+        view.addSubview(spinner)
+
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
 }
