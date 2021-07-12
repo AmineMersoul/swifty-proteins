@@ -9,54 +9,168 @@
 import UIKit
 import SceneKit
 
+struct Elements : Decodable {
+    let elements: [AtomInfo]?
+}
+
+struct AtomInfo: Decodable {
+    let name: String?
+    let phase: String?
+    let summary: String?
+    let symbol: String?
+}
+
+class GetAtomInfo {
+    
+    func getInfo() -> Elements? {
+        var jsonResult:Elements? = nil
+        if let path = Bundle.main.path(forResource: "PeriodicTable", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                jsonResult = try JSONDecoder().decode(Elements.self, from: data) as Elements?
+                return jsonResult
+            } catch {
+                print("error vse dela")
+            }
+        }
+        return jsonResult
+    }
+}
+
+
 class SceneViewController: UIViewController {
 
-    @IBOutlet weak var sceneView: SCNView!
+    @IBOutlet weak var proteinScene: SCNView!
+    
+    @IBOutlet weak var atomName: UILabel!
+    @IBOutlet weak var atomPhase: UILabel!
+    @IBOutlet weak var atomSummary:UITextView!
+    
+    var oldNode: SCNNode?
+    var oldColor: UIColor?
+    var pdbfile : String?
+    var name : String?
+    var atoms: Elements?
+    
+    let pdbFile = "001_ideal"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pdbFile = "001_ideal"
+        proteinScene.backgroundColor = UIColor.white
+        proteinScene.allowsCameraControl = true
+        proteinScene.autoenablesDefaultLighting = true
+        atomSummary.isEditable = false
+        
         
         if let path = Bundle.main.path(forResource: pdbFile, ofType: "pdb"){
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
                 let myStrings = data.components(separatedBy: .newlines)
                 let pdbContent = myStrings.joined(separator: "\n")
-                sceneView.scene = ProteinScene(pdbFile: pdbContent)
-                sceneView.allowsCameraControl = true
+                proteinScene.scene = ProteinScene(pdbFile: pdbContent)
             } catch {
                 print(error)
             }
         }
         
-        getpdbFile()
+        atomSummary.isHidden = true
+        atomName.text = ""
+        atomPhase.text = ""
+        atoms = GetAtomInfo().getInfo()
+        
+        navigationItem.title = name ?? ""
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 220/255, green: 224/255, blue: 230/255, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        let doneButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
+        navigationItem.rightBarButtonItem = doneButton
     }
     
-    func getpdbFile() {
-        let url = URL(string: "https://files.rcsb.org/ligands/0/001/001_ideal.pdb")
+    override func viewDidDisappear(_ animated: Bool) {
+        self.oldNode?.removeAllActions()
+    }
+    
+    @objc func shareAction() {
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, true, 0.0)
+        self.view.drawHierarchy(in: self.view.frame, afterScreenUpdates: false)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
-        
-        //create the session object
-        let session = URLSession.shared
+        if let img = img {
+            let objectsToShare = [img] as [UIImage]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+            self.present(activityVC, animated: true, completion: nil)
+        }
 
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET" //set http method as POST
-
-        //create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            guard error == nil else {
-                return
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: proteinScene)
+        let hitList = proteinScene.hitTest(location, options: nil)
+    
+        DispatchQueue.main.async {
+            if let hitObject = hitList.first {
+                if hitObject.node.name != "CONECT" && touches.count == 1 {
+                    
+                    self.oldNode?.removeAllActions()
+                    self.oldNode?.geometry?.firstMaterial?.diffuse.contents = self.oldColor
+                    
+                    for element in ((self.atoms?.elements)!) {
+                        if (element.symbol?.lowercased() == hitObject.node.name?.lowercased()) {
+                            self.initAtomLabels(element: element)
+                            self.manageSphereSelection(sphere: hitObject.node)
+                        }
+                    }
+                }
+            } else if (touches.count > 1) {
+                self.atomSummary.isHidden = true
+                self.atomName.text = ""
+                
+                self.oldNode?.removeAllActions()
+                self.oldNode?.geometry?.firstMaterial?.diffuse.contents = self.oldColor
             }
-            
-            guard let data = data else {
-                return
-            }
-            
-            print("test \(data)")
+        }
+    }
+    
+    func manageSphereSelection(sphere: SCNNode) {
+        let oldColor = sphere.geometry?.firstMaterial?.diffuse.contents as! UIColor
+        let newColor = UIColor(displayP3Red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
+        let duration: TimeInterval = 0.5
+        let act0 = SCNAction.customAction(duration: duration, action: { (node, elapsedTime) in
+            let percentage = elapsedTime / CGFloat(duration)
+            node.geometry?.firstMaterial?.diffuse.contents = self.aniColor(from: newColor, to: oldColor, percentage: percentage)
         })
-        task.resume()
+        let act1 = SCNAction.customAction(duration: duration, action: { (node, elapsedTime) in
+            let percentage = elapsedTime / CGFloat(duration)
+            node.geometry?.firstMaterial?.diffuse.contents = self.aniColor(from: oldColor, to: newColor, percentage: percentage)
+        })
+        
+        let act = SCNAction.repeatForever(SCNAction.sequence([act0, act1]))
+        sphere.runAction(act)
+        
+        self.oldNode = sphere
+        self.oldColor = oldColor
+    }
+    
+    func aniColor(from: UIColor, to: UIColor, percentage: CGFloat) -> UIColor {
+        let fromComponents = from.cgColor.components!
+        let toComponents = to.cgColor.components!
+        
+        let color = UIColor(red: fromComponents[0] + (toComponents[0] - fromComponents[0]) * percentage,
+                            green: fromComponents[1] + (toComponents[1] - fromComponents[1]) * percentage,
+                            blue: fromComponents[2] + (toComponents[2] - fromComponents[2]) * percentage,
+                            alpha: fromComponents[3] + (toComponents[3] - fromComponents[3]) * percentage)
+        return color
+    }
+    
+    func initAtomLabels (element: AtomInfo) {
+        atomSummary.isHidden = false
+        atomName.text = element.name! + " (" + element.symbol! + ")"
+        atomPhase.text = "Phase: " + (element.phase == nil ? "no info" : String(describing: element.phase!))
+        atomSummary.text = element.summary
     }
 }
 
@@ -104,7 +218,6 @@ class AtomConnections: SCNNode {
     }
     
 }
-
 
 class ProteinScene: SCNScene, SCNNodeRendererDelegate {
     

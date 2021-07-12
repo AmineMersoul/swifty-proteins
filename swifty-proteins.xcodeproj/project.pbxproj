@@ -20,6 +20,7 @@
 		79C3E770269C5118009D2C06 /* 000_ideal.pdb in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E76F269C5118009D2C06 /* 000_ideal.pdb */; };
 		79C3E774269C5D76009D2C06 /* ligands.txt in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E773269C5D76009D2C06 /* ligands.txt */; };
 		79C3E776269C60C0009D2C06 /* 001_ideal.pdb in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E775269C60C0009D2C06 /* 001_ideal.pdb */; };
+		79C3E778269C7653009D2C06 /* PeriodicTable.json in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E777269C7653009D2C06 /* PeriodicTable.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		79C3E76F269C5118009D2C06 /* 000_ideal.pdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 000_ideal.pdb; sourceTree = "<group>"; };
 		79C3E773269C5D76009D2C06 /* ligands.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ligands.txt; path = ../../../ligands.txt; sourceTree = "<group>"; };
 		79C3E775269C60C0009D2C06 /* 001_ideal.pdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 001_ideal.pdb; sourceTree = "<group>"; };
+		79C3E777269C7653009D2C06 /* PeriodicTable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PeriodicTable.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		79539287269625E10064A9FD /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				79C3E777269C7653009D2C06 /* PeriodicTable.json */,
 				79C3E773269C5D76009D2C06 /* ligands.txt */,
 				79C3E76F269C5118009D2C06 /* 000_ideal.pdb */,
 				79C3E775269C60C0009D2C06 /* 001_ideal.pdb */,
@@ -177,6 +180,7 @@
 				79539281269611BD0064A9FD /* LigandsTableViewCell.xib in Resources */,
 				7974DF8D2695CAD300DF74A3 /* Main.storyboard in Resources */,
 				79C3E770269C5118009D2C06 /* 000_ideal.pdb in Resources */,
+				79C3E778269C7653009D2C06 /* PeriodicTable.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
