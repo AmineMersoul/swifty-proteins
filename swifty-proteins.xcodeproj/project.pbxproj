@@ -21,6 +21,9 @@
 		79C3E774269C5D76009D2C06 /* ligands.txt in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E773269C5D76009D2C06 /* ligands.txt */; };
 		79C3E776269C60C0009D2C06 /* 001_ideal.pdb in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E775269C60C0009D2C06 /* 001_ideal.pdb */; };
 		79C3E778269C7653009D2C06 /* PeriodicTable.json in Resources */ = {isa = PBXBuildFile; fileRef = 79C3E777269C7653009D2C06 /* PeriodicTable.json */; };
+		79C3E77D269C8C76009D2C06 /* Atom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3E77C269C8C76009D2C06 /* Atom.swift */; };
+		79C3E77F269C8CBA009D2C06 /* ProteinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3E77E269C8CBA009D2C06 /* ProteinScene.swift */; };
+		79C3E781269C8D89009D2C06 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3E780269C8D89009D2C06 /* Api.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		79C3E773269C5D76009D2C06 /* ligands.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ligands.txt; path = ../../../ligands.txt; sourceTree = "<group>"; };
 		79C3E775269C60C0009D2C06 /* 001_ideal.pdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 001_ideal.pdb; sourceTree = "<group>"; };
 		79C3E777269C7653009D2C06 /* PeriodicTable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PeriodicTable.json; sourceTree = "<group>"; };
+		79C3E77C269C8C76009D2C06 /* Atom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atom.swift; sourceTree = "<group>"; };
+		79C3E77E269C8CBA009D2C06 /* ProteinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinScene.swift; sourceTree = "<group>"; };
+		79C3E780269C8D89009D2C06 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,9 @@
 				7974DF902695CAD400DF74A3 /* LaunchScreen.storyboard */,
 				7974DF932695CAD400DF74A3 /* Info.plist */,
 				79539282269619F40064A9FD /* ViewCell */,
+				79C3E77C269C8C76009D2C06 /* Atom.swift */,
+				79C3E77E269C8CBA009D2C06 /* ProteinScene.swift */,
+				79C3E780269C8D89009D2C06 /* Api.swift */,
 			);
 			path = "swifty-proteins";
 			sourceTree = "<group>";
@@ -191,11 +200,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79C3E781269C8D89009D2C06 /* Api.swift in Sources */,
 				79539280269611BD0064A9FD /* LigandsTableViewCell.swift in Sources */,
 				7974DF8A2695CAD200DF74A3 /* ViewController.swift in Sources */,
 				7974DF862695CAD200DF74A3 /* AppDelegate.swift in Sources */,
 				79539284269623D00064A9FD /* SceneViewController.swift in Sources */,
+				79C3E77F269C8CBA009D2C06 /* ProteinScene.swift in Sources */,
 				79539278269605A50064A9FD /* SearchViewController.swift in Sources */,
+				79C3E77D269C8C76009D2C06 /* Atom.swift in Sources */,
 				7974DF882695CAD200DF74A3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
