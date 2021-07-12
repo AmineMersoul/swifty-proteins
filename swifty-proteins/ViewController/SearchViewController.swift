@@ -48,7 +48,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("you selected a cell: \(filtredData[indexPath.row])")
-        performSegue(withIdentifier: "showScene", sender: nil)
+        performSegue(withIdentifier: "showScene", sender: filtredData[indexPath.row])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showScene" {
+            let scenedVC = segue.destination as! SceneViewController
+            let ligands = sender as! String
+            scenedVC.pdbFile = ligands
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -52,7 +52,7 @@ class SceneViewController: UIViewController {
     var name : String?
     var atoms: Elements?
     
-    let pdbFile = "001_ideal"
+    var pdbFile = "001"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,17 +62,7 @@ class SceneViewController: UIViewController {
         proteinScene.autoenablesDefaultLighting = true
         atomSummary.isEditable = false
         
-        
-        if let path = Bundle.main.path(forResource: pdbFile, ofType: "pdb"){
-            do {
-                let data = try String(contentsOfFile: path, encoding: .utf8)
-                let myStrings = data.components(separatedBy: .newlines)
-                let pdbContent = myStrings.joined(separator: "\n")
-                proteinScene.scene = ProteinScene(pdbFile: pdbContent)
-            } catch {
-                print(error)
-            }
-        }
+        getpdbFile(pdbFile: pdbFile)
         
         atomSummary.isHidden = true
         atomName.text = ""
@@ -85,6 +75,33 @@ class SceneViewController: UIViewController {
         
         let doneButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
         navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    func getpdbFile(pdbFile: String) {
+        let url = URL(string: "https://files.rcsb.org/ligands/\(pdbFile.prefix(1))/\(pdbFile)/\(pdbFile)_ideal.pdb")
+        
+        //create the session object
+        let session = URLSession.shared
+
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET" //set http method as POST
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            guard error == nil else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            let text = String(decoding: data, as: UTF8.self)
+            .components(separatedBy: "\n")
+            let pdbContent = text.joined(separator: "\n")
+            self.proteinScene.scene = ProteinScene(pdbFile: pdbContent)
+        })
+        task.resume()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
