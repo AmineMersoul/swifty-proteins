@@ -10,7 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource  {
     
-    let data = ["001", "011", "031", "041", "04G", "083", "0AF", "0DS", "0DX", "0E5", "0EA", "0J0", "0JV", "0L8", "0MC", "0MD", "0RU", "0RY"]
+    var data: [String] = [];
     var filtredData: [String]!
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -20,6 +20,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         super.viewDidLoad()
 
         searchBar.delegate = self
+        
+        let ligandsFile = "ligands"
+        
+        if let path = Bundle.main.path(forResource: ligandsFile, ofType: "txt"){
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let ligands : [String] = data.components(separatedBy: .newlines)
+                self.data = ligands
+            } catch {
+                print(error)
+            }
+        }
         
         filtredData = data
         
