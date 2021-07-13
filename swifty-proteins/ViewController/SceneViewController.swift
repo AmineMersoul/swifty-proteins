@@ -72,12 +72,14 @@ class SceneViewController: UIViewController {
         self.oldNode?.removeAllActions()
     }
     
+    
+ 
     @objc func shareAction() {
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, true, 0.0)
         self.view.drawHierarchy(in: self.view.frame, afterScreenUpdates: false)
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         if let img = img {
             let objectsToShare = [img] as [UIImage]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
